@@ -16,7 +16,7 @@ object WriterHello {
     implicit val system = ActorSystem("QuickStart")
     implicit val materializer = ActorMaterializer()
 
-    val source: Source[Int, NotUsed] = Source(1 to 100)
+    val source: Source[Int, NotUsed] = Source(1 to 10000)
     val factorials = source.scan(BigInt(1))((acc, next) => acc * next)
 
     val result: Future[IOResult] =
