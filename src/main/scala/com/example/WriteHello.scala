@@ -11,7 +11,7 @@ import akka.util.ByteString
 import scala.concurrent.Future
 
 
-object WriterHello {
+object WriteHello {
   def main(args: Array[String]): Unit = {
     implicit val system = ActorSystem("QuickStart")
     implicit val materializer = ActorMaterializer()
@@ -24,5 +24,8 @@ object WriterHello {
         .map(num => ByteString(s"$num\n"))
         .runWith(FileIO.toFile(new File("target/factorials.txt")))
     println("Hello, world!")
-  }
+
+    Thread.sleep(1000)
+    system.shutdown()
+    system.awaitTermination()  }
 }

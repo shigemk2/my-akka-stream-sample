@@ -24,6 +24,7 @@ object ReusableWriterHello {
         .map(_.toString)
         .runWith(lineSink("target/factorials2.txt"))
     println("Hello, world!")
+    system.shutdown()
   }
 
   def lineSink(filename: String): Sink[String, Future[IOResult]] =
